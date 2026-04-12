@@ -1,8 +1,10 @@
 databases:
   - name: pawtag-db
+    plan: free
 
 services:
-  - name: pawtag-backend
+  - type: web
+    name: pawtag-backend
     runtime: docker
     dockerfilePath: backend/Dockerfile
     dockerCommand: npm start
@@ -17,10 +19,9 @@ services:
       - key: SESSION_SECRET
         sync: false
     healthCheckPath: /api/health
-    postgres:
-      name: pawtag-db
 
-  - name: pawtag-web
+  - type: web
+    name: pawtag-web
     runtime: docker
     dockerfilePath: web/Dockerfile
     dockerCommand: npm run dev -- --host 0.0.0.0
