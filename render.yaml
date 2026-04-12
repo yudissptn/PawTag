@@ -1,0 +1,30 @@
+databases:
+  - name: pawtag-db
+
+services:
+  - name: pawtag-backend
+    runtime: docker
+    dockerfilePath: backend/Dockerfile
+    dockerCommand: npm start
+    dockerContext: backend
+    envVars:
+      - key: PORT
+        value: "10000"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: pawtag-db
+          property: connectionString
+      - key: SESSION_SECRET
+        sync: false
+    healthCheckPath: /api/health
+    postgres:
+      name: pawtag-db
+
+  - name: pawtag-web
+    runtime: docker
+    dockerfilePath: web/Dockerfile
+    dockerCommand: npm run dev -- --host 0.0.0.0
+    dockerContext: web
+    envVars:
+      - key: VITE_API_URL
+        value: https://pawtag-backend.onrender.com/api

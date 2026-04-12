@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #faf6f0;
+  --warm-white: #fdf9f4;
+  --rust: #c4502a;
+  --amber: #d4823a;
+  --deep-brown: #2c1810;
+  --mid-brown: #6b3f2a;
+  --soft-gold: #e8c068;
+  --sage: #8a9e7f;
+  --charcoal: #3a3230;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cream);
+  color: var(--deep-brown);
+  font-family: "DM Sans", sans-serif;
+  overflow-x: hidden;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.7s ease both;
+}
+
+.animate-fade-up-delay-1 {
+  animation: fadeUp 0.7s 0.15s ease both;
+}
+
+.animate-fade-up-delay-2 {
+  animation: fadeUp 0.7s 0.3s ease both;
+}
+
+.animate-fade-up-delay-3 {
+  animation: fadeUp 0.7s 0.45s ease both;
+}
