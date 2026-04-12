@@ -7,7 +7,6 @@ COPY package*.json ./
 RUN npm ci
 
 COPY src/ ./src/
-COPY .env* ./
 COPY tsconfig.json ./
 
 EXPOSE 10000

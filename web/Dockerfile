@@ -4,13 +4,13 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm ci --only=production
+RUN npm ci
 
-COPY .env* ./
-COPY index.html
+COPY index.html ./
+COPY vite.config.ts ./
+COPY tsconfig.json ./
 COPY src/ ./src/
 COPY public/ ./public/
-COPY vite.config.ts ./
 
 EXPOSE 5173
 
