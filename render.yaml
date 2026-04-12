@@ -5,6 +5,7 @@ databases:
 services:
   - type: web
     name: pawtag-backend
+    plan: free
     runtime: docker
     dockerfilePath: backend/Dockerfile
     dockerCommand: npm start
@@ -22,6 +23,7 @@ services:
 
   - type: web
     name: pawtag-web
+    plan: free
     runtime: docker
     dockerfilePath: web/Dockerfile
     dockerCommand: npm run dev -- --host 0.0.0.0
