@@ -28,6 +28,7 @@ services:
     dockerfilePath: web/Dockerfile
     dockerCommand: npm run preview
     dockerContext: web
-    envVars:
-      - key: VITE_API_URL
-        value: https://pawtag-backend-xf3e.onrender.com/api
+    buildArgs:
+      VITE_API_URL: https://pawtag-backend-xf3e.onrender.com/api
+    
+      
