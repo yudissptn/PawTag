@@ -26,7 +26,7 @@ services:
     plan: free
     runtime: docker
     dockerfilePath: web/Dockerfile
-    dockerCommand: npm run build && npx serve dist -l 5173
+    dockerCommand: sh -c "npm run build && npx serve dist -l 5173"
     dockerContext: web
     envVars:
       - key: VITE_API_URL
