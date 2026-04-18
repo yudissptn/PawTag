@@ -8,6 +8,7 @@ const seed = async () => {
   const name = "Admin";
 
   const hash = await bcrypt.hash(password, 10);
+  console.log("Password hash:", hash);
 
   try {
     await pool.query(
