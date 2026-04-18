@@ -16,8 +16,8 @@ interface Owner {
   name: string;
 }
 
-const TAGS_API = "/api/tags";
-const USERS_API = "/api/users";
+const TAGS_API = `${import.meta.env.VITE_API_URL}/tags`;
+const USERS_API = `${import.meta.env.VITE_API_URL}/users`;
 
 const authHeaders = () => {
   const token = localStorage.getItem("token");
