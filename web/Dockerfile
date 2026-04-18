@@ -6,6 +6,8 @@ COPY package*.json ./
 
 RUN npm ci
 
+RUN npm run build
+
 COPY index.html ./
 COPY vite.config.ts ./
 COPY tsconfig.json ./
@@ -14,6 +16,7 @@ COPY src/ ./src/
 COPY public/ ./public/
 COPY tailwind.config.js ./
 COPY postcss.config.js ./
+COPY dist/ ./dist/
 
 EXPOSE 5173
 
