@@ -6,8 +6,6 @@ COPY package*.json ./
 
 RUN npm ci
 
-RUN npm run build
-
 COPY index.html ./
 COPY vite.config.ts ./
 COPY tsconfig.json ./
@@ -16,8 +14,9 @@ COPY src/ ./src/
 COPY public/ ./public/
 COPY tailwind.config.js ./
 COPY postcss.config.js ./
-COPY dist/ ./dist/
+
+RUN npm run build
 
 EXPOSE 5173
 
-CMD ["npm", "run", "dev", "--", "--host"]
+CMD ["npx", "serve", "dist", "-l", "5173"]
