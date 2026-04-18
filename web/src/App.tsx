@@ -41,8 +41,10 @@ const App: FC = () => {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/pet" element={<Navigate to="/" replace />} />
+        <Route path="/tag" element={<Navigate to="/" replace />} />
         <Route path="/login" element={<Login />} />
         <Route path="/pet/:tagId" element={<PetDetails />} />
+        <Route path="/tag/:tagId" element={<PetDetails />} />
         <Route element={<UserProtectedRoute />}>
           <Route path="/my-pet" element={<MyPet />} />
           <Route path="/my-pet/messages" element={<Messages />} />
