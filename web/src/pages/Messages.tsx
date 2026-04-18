@@ -19,7 +19,7 @@ export const Messages: FC = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch("/api/tags/messages", {
+    fetch(`${import.meta.env.VITE_API_URL}/tags/messages`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())

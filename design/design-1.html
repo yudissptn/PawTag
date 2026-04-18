@@ -1,0 +1,986 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PawTag — Never Lose What You Love</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --cream: #faf6f0;
+        --warm-white: #fdf9f4;
+        --rust: #c4502a;
+        --amber: #d4823a;
+        --deep-brown: #2c1810;
+        --mid-brown: #6b3f2a;
+        --soft-gold: #e8c068;
+        --sage: #8a9e7f;
+        --charcoal: #3a3230;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--cream);
+        color: var(--deep-brown);
+        font-family: "DM Sans", sans-serif;
+        overflow-x: hidden;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.5rem 4rem;
+        background: rgba(250, 246, 240, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(196, 80, 42, 0.1);
+      }
+      .nav-logo {
+        font-family: "Playfair Display", serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--rust);
+        letter-spacing: -0.02em;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+      }
+      .nav-links a {
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--charcoal);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .nav-links a:hover {
+        color: var(--rust);
+      }
+      .nav-cta {
+        background: var(--rust);
+        color: white;
+        padding: 0.75rem 1.8rem;
+        border-radius: 2px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+      .nav-cta:hover {
+        background: var(--mid-brown);
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding-top: 80px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 6rem 4rem 6rem 6rem;
+        position: relative;
+        z-index: 2;
+      }
+      .hero-eyebrow {
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--rust);
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        width: 32px;
+        height: 1px;
+        background: var(--rust);
+        display: block;
+      }
+      .hero-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(3rem, 5vw, 5.5rem);
+        line-height: 1.05;
+        font-weight: 900;
+        color: var(--deep-brown);
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.02em;
+      }
+      .hero-title em {
+        font-style: italic;
+        color: var(--rust);
+      }
+      .hero-subtitle {
+        font-family: "Lora", serif;
+        font-size: 1.15rem;
+        line-height: 1.75;
+        color: var(--mid-brown);
+        max-width: 440px;
+        margin-bottom: 3rem;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 1.2rem;
+        align-items: center;
+      }
+      .btn-primary {
+        background: var(--rust);
+        color: white;
+        padding: 1.1rem 2.5rem;
+        border-radius: 2px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: all 0.3s;
+        border: 2px solid var(--rust);
+      }
+      .btn-primary:hover {
+        background: transparent;
+        color: var(--rust);
+      }
+      .btn-secondary {
+        color: var(--mid-brown);
+        font-size: 0.9rem;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: "Lora", serif;
+        font-style: italic;
+        transition: color 0.3s;
+      }
+      .btn-secondary:hover {
+        color: var(--rust);
+      }
+      .btn-secondary::after {
+        content: "→";
+        font-style: normal;
+      }
+
+      .hero-right {
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
+      }
+      .hero-img-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to right, var(--cream) 0%, transparent 30%);
+      }
+
+      /* STAT STRIP */
+      .stat-strip {
+        background: var(--deep-brown);
+        padding: 2.5rem 6rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .stat-item {
+        text-align: center;
+      }
+      .stat-num {
+        font-family: "Playfair Display", serif;
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: var(--soft-gold);
+        line-height: 1;
+      }
+      .stat-label {
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 0.4rem;
+      }
+      .stat-divider {
+        width: 1px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      /* EMOTIONAL SECTION */
+      .emotional {
+        padding: 9rem 6rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6rem;
+        align-items: center;
+      }
+      .emotional-text {
+      }
+      .section-label {
+        font-size: 0.72rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--rust);
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+      .section-label::before {
+        content: "";
+        width: 24px;
+        height: 1px;
+        background: var(--rust);
+      }
+      .emotional-heading {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2rem, 3.5vw, 3.2rem);
+        line-height: 1.2;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        color: var(--deep-brown);
+      }
+      .emotional-body {
+        font-family: "Lora", serif;
+        font-size: 1.05rem;
+        line-height: 1.85;
+        color: var(--mid-brown);
+        margin-bottom: 1.5rem;
+      }
+      .emotional-quote {
+        border-left: 3px solid var(--rust);
+        padding: 1.2rem 1.8rem;
+        margin: 2.5rem 0;
+        background: rgba(196, 80, 42, 0.05);
+        border-radius: 0 4px 4px 0;
+      }
+      .emotional-quote p {
+        font-family: "Playfair Display", serif;
+        font-size: 1.15rem;
+        font-style: italic;
+        color: var(--deep-brown);
+        line-height: 1.65;
+      }
+      .emotional-visual {
+        position: relative;
+      }
+      .emotional-img-wrap {
+        position: relative;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .emotional-img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        display: block;
+      }
+      .emotional-tag {
+        position: absolute;
+        bottom: 2rem;
+        left: 2rem;
+        background: white;
+        padding: 1.2rem 1.8rem;
+        border-radius: 4px;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+      }
+      .tag-label {
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--sage);
+        font-weight: 500;
+      }
+      .tag-value {
+        font-family: "Playfair Display", serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--deep-brown);
+        margin-top: 0.2rem;
+      }
+
+      /* HOW IT WORKS */
+      .how {
+        padding: 8rem 6rem;
+        background: var(--warm-white);
+      }
+      .how-header {
+        text-align: center;
+        margin-bottom: 5rem;
+      }
+      .how-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2rem, 3vw, 3rem);
+        font-weight: 700;
+        color: var(--deep-brown);
+        margin-bottom: 1rem;
+      }
+      .how-sub {
+        font-family: "Lora", serif;
+        font-style: italic;
+        font-size: 1.05rem;
+        color: var(--mid-brown);
+      }
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+        position: relative;
+      }
+      .steps::before {
+        content: "";
+        position: absolute;
+        top: 3.5rem;
+        left: 15%;
+        right: 15%;
+        height: 1px;
+        background: repeating-linear-gradient(
+          90deg,
+          var(--rust) 0,
+          var(--rust) 6px,
+          transparent 6px,
+          transparent 14px
+        );
+      }
+      .step {
+        text-align: center;
+        position: relative;
+      }
+      .step-icon {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: var(--rust);
+        margin: 0 auto 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Playfair Display", serif;
+        font-size: 1.6rem;
+        color: white;
+        font-weight: 700;
+        position: relative;
+        z-index: 1;
+      }
+      .step-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--deep-brown);
+        margin-bottom: 0.8rem;
+      }
+      .step-desc {
+        font-family: "Lora", serif;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: var(--mid-brown);
+      }
+
+      /* TESTIMONIALS */
+      .testimonials {
+        padding: 8rem 6rem;
+        background: var(--deep-brown);
+      }
+      .test-header {
+        text-align: center;
+        margin-bottom: 5rem;
+      }
+      .test-title {
+        font-family: "Playfair Display", serif;
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: var(--soft-gold);
+      }
+      .test-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+      .test-card {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        padding: 2.5rem;
+        transition: background 0.3s;
+      }
+      .test-card:hover {
+        background: rgba(255, 255, 255, 0.09);
+      }
+      .test-quote {
+        font-family: "Lora", serif;
+        font-style: italic;
+        font-size: 1rem;
+        line-height: 1.75;
+        color: rgba(255, 255, 255, 0.82);
+        margin-bottom: 2rem;
+      }
+      .test-stars {
+        color: var(--soft-gold);
+        letter-spacing: 2px;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+      }
+      .test-author {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .test-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid rgba(232, 192, 104, 0.4);
+      }
+      .test-name {
+        font-weight: 500;
+        color: white;
+        font-size: 0.9rem;
+      }
+      .test-pet {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      /* PRODUCT */
+      .product {
+        padding: 9rem 6rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6rem;
+        align-items: center;
+      }
+      .product-img-wrap {
+        position: relative;
+        display: flex;
+        justify-content: center;
+      }
+      .product-bg-circle {
+        position: absolute;
+        width: 420px;
+        height: 420px;
+        background: radial-gradient(
+          circle,
+          rgba(212, 130, 58, 0.12) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .product-img {
+        width: 380px;
+        height: 380px;
+        object-fit: cover;
+        border-radius: 50%;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 24px 80px rgba(196, 80, 42, 0.2);
+        border: 6px solid white;
+      }
+      .product-features {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+      }
+      .feat {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.8rem;
+      }
+      .feat-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(196, 80, 42, 0.1);
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+      }
+      .feat-text {
+      }
+      .feat-title {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--deep-brown);
+      }
+      .feat-desc {
+        font-size: 0.8rem;
+        color: var(--mid-brown);
+        margin-top: 0.2rem;
+        line-height: 1.5;
+      }
+
+      /* CTA */
+      .cta-section {
+        padding: 8rem 6rem;
+        background: linear-gradient(
+          135deg,
+          #c4502a 0%,
+          #8b3220 50%,
+          #2c1810 100%
+        );
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -20%;
+        width: 60%;
+        height: 200%;
+        background: radial-gradient(
+          ellipse,
+          rgba(255, 255, 255, 0.06) 0%,
+          transparent 60%
+        );
+      }
+      .cta-eyebrow {
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 1.5rem;
+      }
+      .cta-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.5rem, 4.5vw, 4.5rem);
+        font-weight: 900;
+        color: white;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+      }
+      .cta-sub {
+        font-family: "Lora", serif;
+        font-style: italic;
+        font-size: 1.15rem;
+        color: rgba(255, 255, 255, 0.75);
+        max-width: 500px;
+        margin: 0 auto 3rem;
+        line-height: 1.7;
+      }
+      .cta-price {
+        font-family: "Playfair Display", serif;
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: var(--soft-gold);
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+      .cta-price-note {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 2.5rem;
+      }
+      .btn-cta-main {
+        display: inline-block;
+        background: white;
+        color: var(--rust);
+        padding: 1.3rem 4rem;
+        border-radius: 2px;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: all 0.3s;
+      }
+      .btn-cta-main:hover {
+        background: var(--soft-gold);
+        color: var(--deep-brown);
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--charcoal);
+        padding: 3rem 6rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .footer-logo {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        color: var(--cream);
+        font-weight: 700;
+      }
+      .footer-copy {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .footer-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+      .footer-links a {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.4);
+        text-decoration: none;
+      }
+
+      /* ANIMATIONS */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .hero-eyebrow {
+        animation: fadeUp 0.7s ease both;
+      }
+      .hero-title {
+        animation: fadeUp 0.7s 0.15s ease both;
+      }
+      .hero-subtitle {
+        animation: fadeUp 0.7s 0.3s ease both;
+      }
+      .hero-actions {
+        animation: fadeUp 0.7s 0.45s ease both;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-logo">PawTag</div>
+      <ul class="nav-links">
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+      </ul>
+      <a href="#order" class="nav-cta">Order Now</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left">
+        <p class="hero-eyebrow">The Smart Pet Necklace</p>
+        <h1 class="hero-title">
+          They can't<br />tell you where<br />they are.<br /><em
+            >Now they don't<br />have to.</em
+          >
+        </h1>
+        <p class="hero-subtitle">
+          A single tap. Your contact. Your address. In the hands of whoever
+          finds your lost love — instantly.
+        </p>
+        <div class="hero-actions">
+          <a href="#order" class="btn-primary">Protect My Pet</a>
+          <a href="#how" class="btn-secondary">See how it works</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <img
+          class="hero-img"
+          src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1200&q=90"
+          alt="Golden retriever wearing a necklace, looking up lovingly"
+        />
+        <div class="hero-img-overlay"></div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stat-strip">
+      <div class="stat-item">
+        <div class="stat-num">1 in 3</div>
+        <div class="stat-label">Pets go missing in their lifetime</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">90%</div>
+        <div class="stat-label">With ID are returned home safely</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">2 sec</div>
+        <div class="stat-label">Time to scan & see your info</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">No App</div>
+        <div class="stat-label">Required for the finder to scan</div>
+      </div>
+    </div>
+
+    <!-- EMOTIONAL -->
+    <section class="emotional" id="story">
+      <div class="emotional-text">
+        <p class="section-label">The moment every owner fears</p>
+        <h2 class="emotional-heading">
+          That sick feeling when you call their name — and silence answers back.
+        </h2>
+        <p class="emotional-body">
+          Your pet isn't just an animal. They are your morning alarm, your
+          stress relief, your loyal shadow. They are the reason you rush home.
+          Losing them, even for an hour, is a terror no owner forgets.
+        </p>
+        <div class="emotional-quote">
+          <p>
+            "I spent three days plastering posters, barely sleeping. You never
+            realize how loud silence is until the one who always greeted you...
+            doesn't."
+          </p>
+        </div>
+        <p class="emotional-body">
+          PawTag was born from exactly that fear. A slim, elegant NFC-equipped
+          necklace that lets any smartphone — any passerby, any kind stranger —
+          instantly see your contact details and address without downloading a
+          single app. Because when every minute matters, technology should
+          disappear and only the reunion should remain.
+        </p>
+      </div>
+      <div class="emotional-visual">
+        <div class="emotional-img-wrap">
+          <img
+            class="emotional-img"
+            src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=900&q=90"
+            alt="Woman hugging her dog tightly, eyes closed in relief"
+          />
+          <div class="emotional-tag">
+            <div class="tag-label">Reunions Last Year</div>
+            <div class="tag-value">12,400+ families</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how" id="how">
+      <div class="how-header">
+        <p
+          class="section-label"
+          style="justify-content: center; margin-bottom: 1rem"
+        >
+          Simple. Instant. Reliable.
+        </p>
+        <h2 class="how-title">From lost — to found — in three steps.</h2>
+        <p class="how-sub">No app. No password. No waiting.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-icon">1</div>
+          <h3 class="step-title">Pet Wears PawTag</h3>
+          <p class="step-desc">
+            Your pet wears our beautifully crafted NFC necklace. Lightweight,
+            waterproof, and designed to match any coat or fur.
+          </p>
+        </div>
+        <div class="step">
+          <div class="step-icon">2</div>
+          <h3 class="step-title">Stranger Finds & Scans</h3>
+          <p class="step-desc">
+            Anyone with a smartphone taps the tag. Their phone opens your pet's
+            profile page instantly — no app needed, no friction.
+          </p>
+        </div>
+        <div class="step">
+          <div class="step-icon">3</div>
+          <h3 class="step-title">You Get the Call</h3>
+          <p class="step-desc">
+            They see your name, photo, phone number, and home address. One tap
+            to call you. Your pet is already on the way home.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials" id="reviews">
+      <div class="test-header">
+        <h2 class="test-title">Stories of reunion.</h2>
+      </div>
+      <div class="test-grid">
+        <div class="test-card">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-quote">
+            "Mochi escaped during a thunderstorm. I was shaking. Someone found
+            him two blocks away, tapped the tag, and called me in minutes. I
+            cannot express what that moment felt like."
+          </p>
+          <div class="test-author">
+            <img
+              class="test-avatar"
+              src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80"
+              alt="Sarah"
+            />
+            <div>
+              <div class="test-name">Sarah T.</div>
+              <div class="test-pet">Owner of Mochi, Shih Tzu</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-quote">
+            "Remy slipped out of the backyard. No microchip scanner nearby, but
+            the kind lady who found him just tapped his PawTag. She was on the
+            phone with me 30 seconds later."
+          </p>
+          <div class="test-author">
+            <img
+              class="test-avatar"
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80"
+              alt="James"
+            />
+            <div>
+              <div class="test-name">James W.</div>
+              <div class="test-pet">Owner of Remy, Labrador</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-card">
+          <div class="test-stars">★★★★★</div>
+          <p class="test-quote">
+            "As a vet, I recommend PawTag to every single client. Microchips
+            require a scanner. NFC requires nothing. It's the most practical
+            piece of pet safety I've seen."
+          </p>
+          <div class="test-author">
+            <img
+              class="test-avatar"
+              src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=100&q=80"
+              alt="Dr. Anika"
+            />
+            <div>
+              <div class="test-name">Dr. Anika R.</div>
+              <div class="test-pet">Veterinarian, 12 years</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT -->
+    <section class="product" id="order">
+      <div class="product-img-wrap">
+        <div class="product-bg-circle"></div>
+        <img
+          class="product-img"
+          src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=90"
+          alt="Two dogs running together"
+        />
+      </div>
+      <div>
+        <p class="section-label">The PawTag Necklace</p>
+        <h2 class="emotional-heading">
+          Designed for them.<br />Built for your peace of mind.
+        </h2>
+        <p class="emotional-body">
+          Crafted from marine-grade stainless steel with a premium leather cord.
+          Water-resistant, chew-resistant, and beautiful enough to match any
+          collar.
+        </p>
+        <div class="product-features">
+          <div class="feat">
+            <div class="feat-icon">📡</div>
+            <div class="feat-text">
+              <div class="feat-title">NFC Technology</div>
+              <div class="feat-desc">
+                Works with any iPhone or Android — no app download required.
+              </div>
+            </div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon">💧</div>
+            <div class="feat-text">
+              <div class="feat-title">Waterproof</div>
+              <div class="feat-desc">
+                Rated IP68. Bath time, rain, rivers — no problem.
+              </div>
+            </div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon">✏️</div>
+            <div class="feat-text">
+              <div class="feat-title">Editable Profile</div>
+              <div class="feat-desc">
+                Update address or phone anytime from your dashboard.
+              </div>
+            </div>
+          </div>
+          <div class="feat">
+            <div class="feat-icon">🔋</div>
+            <div class="feat-text">
+              <div class="feat-title">No Battery</div>
+              <div class="feat-desc">
+                Passive NFC — works forever, no charging ever needed.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <p class="cta-eyebrow">Start protecting today</p>
+      <h2 class="cta-title">
+        Don't wait for the moment<br />you can't take back.
+      </h2>
+      <p class="cta-sub">
+        Give your pet the tag that brings them home. Give yourself the peace you
+        deserve.
+      </p>
+      <span class="cta-price">$29</span>
+      <p class="cta-price-note">Free shipping · 30-day happiness guarantee</p>
+      <a href="#" class="btn-cta-main">Get PawTag Now</a>
+    </section>
+
+    <footer>
+      <div class="footer-logo">PawTag</div>
+      <p class="footer-copy">
+        © 2025 PawTag. Made with love for every pet and the humans who love
+        them.
+      </p>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </div>
+    </footer>
+  </body>
+</html>

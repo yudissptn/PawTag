@@ -18,7 +18,7 @@ export const ConsoleDashboard: FC = () => {
           <button
             onClick={async () => {
               const token = localStorage.getItem("token");
-              await fetch("/api/console/logout", {
+              await fetch(`${import.meta.env.VITE_API_URL}/console/logout`, {
                 method: "POST",
                 headers: { Authorization: `Bearer ${token}` },
               });

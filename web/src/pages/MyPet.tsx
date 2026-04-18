@@ -26,10 +26,10 @@ export const MyPet: FC = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     Promise.all([
-      fetch("/api/tags/mine", {
+      fetch(`${import.meta.env.VITE_API_URL}/tags/mine`, {
         headers: { Authorization: `Bearer ${token}` },
       }).then((res) => res.json()),
-      fetch("/api/tags/messages/unread-count", {
+      fetch(`${import.meta.env.VITE_API_URL}/tags/messages/unread-count`, {
         headers: { Authorization: `Bearer ${token}` },
       }).then((res) => res.json()),
     ])
@@ -48,7 +48,7 @@ export const MyPet: FC = () => {
   const handleLogout = async () => {
     const token = localStorage.getItem("token");
     try {
-      await fetch("/api/logout", {
+      await fetch(`${import.meta.env.VITE_API_URL}/logout`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
       });
