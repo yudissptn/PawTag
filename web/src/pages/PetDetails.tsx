@@ -27,7 +27,7 @@ export const PetDetails: FC = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    fetch(`/api/tags/public/${tagId}`)
+    fetch(`${import.meta.env.VITE_API_URL}/tags/public/${tagId}`)
       .then((res) => res.json())
       .then((data) => {
         setTag(data.tag);
