@@ -72,7 +72,7 @@ export const MyPet: FC = () => {
 
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(`/api/tags/upload/${tagId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/tags/upload/${tagId}`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: formData,
@@ -94,7 +94,7 @@ export const MyPet: FC = () => {
 
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(`/api/tags/${editingTag.id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/tags/${editingTag.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
