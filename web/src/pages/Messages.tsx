@@ -39,7 +39,7 @@ export const Messages: FC = () => {
   const handleMarkRead = async (id: number) => {
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(`/api/tags/messages/${id}/read`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/tags/messages/${id}/read`, {
         method: "PATCH",
         headers: { Authorization: `Bearer ${token}` },
       });
